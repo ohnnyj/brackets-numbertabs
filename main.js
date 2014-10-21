@@ -37,6 +37,12 @@ define(function (require, exports, module) {
     }
   }
   
+  function cb(index) {
+    return function() {
+      setDocument(index);
+    };
+  }
+  
   function bind() {
     var id = 'ohnnyj.numbertabs.';
 
@@ -44,12 +50,7 @@ define(function (require, exports, module) {
       var key = 'Cmd-' + i;
       var _id = id + i;
 
-      CommandManager.register('Tab ' + i, _id, (function(index) {
-        return function() {
-          setDocument(index);
-        };
-      })(i - 1));
-
+      CommandManager.register('Tab ' + i, _id, cb(i - 1));
       KeyBindingManager.addBinding(_id, key);
     }
   }
