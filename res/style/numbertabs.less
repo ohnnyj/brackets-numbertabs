@@ -1,0 +1,20 @@
+.ohnnyj-tab(@index) {
+  content: ~'"@{index}"';
+  font-size: 10px;
+  float: left;
+  position: relative;
+  top: 2px;
+  left: 6px;
+}
+
+.ohnnyj-generate-tabs(@n, @i: 1) when (@i =< @n) {
+  .open-files-container ul li {
+    &:nth-child(@{i}):before {
+    	.ohnnyj-tab(@i);
+    }
+   }
+  
+  .ohnnyj-generate-tabs(@n, (@i + 1));
+}
+
+.ohnnyj-generate-tabs(9);

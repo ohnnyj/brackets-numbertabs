@@ -1,0 +1,11 @@
+{
+    "name": "ohnnyj.numbertabs",
+    "title": "Number Tabs",
+    "description": "Allows toggling between tabs / documents with # keys.",
+    "version": "0.0.1",
+    "author": "John Smith <ohnnyj@gmail.com>",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=0.44.0"
+    }
+}
