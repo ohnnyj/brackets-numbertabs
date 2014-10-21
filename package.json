@@ -1,11 +1,16 @@
 {
-    "name": "ohnnyj.numbertabs",
-    "title": "Number Tabs",
-    "description": "Allows toggling between tabs / documents with # keys.",
-    "version": "0.0.1",
-    "author": "John Smith <ohnnyj@gmail.com>",
-    "license": "MIT",
-    "engines": {
-        "brackets": ">=0.44.0"
-    }
+  "name": "ohnnyj.numbertabs",
+  "title": "Number Tabs",
+  "description": "Allows toggling between tabs / documents using Cmd/Ctrl + #.",
+  "version": "0.0.2",
+  "author": "John Smith <ohnnyj@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "brackets": ">=0.44.0"
+  },
+  "homepage": "https://github.com/ohnnyj/brackets-numbertabs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohnnyj/brackets-numbertabs"
+  }
 }
