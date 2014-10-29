@@ -2,7 +2,7 @@
   "name": "ohnnyj.numbertabs",
   "title": "Number Tabs",
   "description": "Allows toggling between tabs / documents using Cmd/Ctrl + #.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "John Smith <ohnnyj@gmail.com>",
   "license": "MIT",
   "engines": {

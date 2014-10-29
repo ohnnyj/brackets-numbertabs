@@ -47,7 +47,12 @@ define(function (require, exports, module) {
     var id = 'ohnnyj.numbertabs.';
 
     for(var i = 1; i <= 9; ++i) {
-      var key = 'Cmd-' + i;
+      var key = [{
+        key: 'Ctrl-' + i
+      }, {
+        key: 'Cmd-' + i,
+        platform: 'mac'
+      }];
       var _id = id + i;
 
       CommandManager.register('Tab ' + i, _id, cb(i - 1));
