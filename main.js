@@ -14,49 +14,86 @@ define(function (require, exports, module) {
 
   var AppInit = brackets.getModule('utils/AppInit');
   var CommandManager = brackets.getModule('command/CommandManager');
-  var DocumentManager = brackets.getModule('document/DocumentManager');
+  var Commands = brackets.getModule('command/Commands');
   var ExtensionUtils = brackets.getModule('utils/ExtensionUtils');
   var KeyBindingManager = brackets.getModule('command/KeyBindingManager');
   var MainViewManager = brackets.getModule('view/MainViewManager');
   
-  function setDocument(index) {
+  function setDocument(index, active) {
     var workingSet = MainViewManager.getWorkingSet();
+    
+    if(!active) {
+      // TODO: what do we do if there are > 2 panes...
+      var fullWorkingSet = MainViewManager.getWorkingSet(MainViewManager.ALL_PANES);
+      var fileCount = fullWorkingSet.length - workingSet.length;
 
+      if(fileCount <= index) { return; }
+      
+      var paneId = MainViewManager.getActivePaneId();
+      var paneIds = MainViewManager.getPaneIdList();
+      var length = paneIds.length;
+      
+      if(length < 2) { return; }
+      
+      for(var i = 0; i < length; ++i) {
+        if(paneIds[i] !== paneId) {
+          paneId = paneIds[i];
+          break;
+        }
+      }
+      
+      MainViewManager.setActivePaneId(paneId);
+      
+      workingSet = MainViewManager.getWorkingSet();
+    }
+    
     if(workingSet && workingSet.length > index) {
       var file = workingSet[index];
       
       if(file) {
-        DocumentManager.getDocumentForPath(file.fullPath)
-          .done(function (doc) {
-            DocumentManager.setCurrentDocument(doc);
-          })
-          .fail(function() {
-            console.error(arguments);
-          });
+        CommandManager.execute(Commands.CMD_OPEN, {fullPath: file.fullPath});
       }
     }
   }
   
-  function cb(index) {
+  function cb(index, active) {
     return function() {
-      setDocument(index);
+      setDocument(index, active);
     };
   }
   
+  var id = 'ohnnyj.numbertabs.';
+  
+  function bindActivePane(i) {
+    var key = [{
+      key: 'Ctrl-' + i
+    }, {
+      key: 'Cmd-' + i,
+      platform: 'mac'
+    }];
+    var _id = id + 'active.' + i;
+
+    CommandManager.register('Tab ' + i, _id, cb(i - 1, true));
+    KeyBindingManager.addBinding(_id, key);
+  }
+  
+  function bindInactivePane(i) {
+    var key = [{
+      key: 'Alt-Ctrl-' + i
+    }, {
+      key: 'Opt-Cmd-' + i,
+      platform: 'mac'
+    }];
+    var _id = id + 'inactive.' + i;
+
+    CommandManager.register('Inactive Pane Tab ' + i, _id, cb(i - 1, false));
+    KeyBindingManager.addBinding(_id, key);
+  }
+  
   function bind() {
-    var id = 'ohnnyj.numbertabs.';
-
     for(var i = 1; i <= 9; ++i) {
-      var key = [{
-        key: 'Ctrl-' + i
-      }, {
-        key: 'Cmd-' + i,
-        platform: 'mac'
-      }];
-      var _id = id + i;
-
-      CommandManager.register('Tab ' + i, _id, cb(i - 1));
-      KeyBindingManager.addBinding(_id, key);
+      bindActivePane(i);
+      bindInactivePane(i);
     }
   }
   
