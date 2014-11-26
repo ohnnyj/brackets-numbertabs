@@ -73,7 +73,7 @@ define(function (require, exports, module) {
     }];
     var _id = id + 'active.' + i;
 
-    CommandManager.register('Tab ' + i, _id, cb(i - 1, true));
+    CommandManager.register('Tab ' + i, _id, cb(i === 0 ? 9 : i - 1, true));
     KeyBindingManager.addBinding(_id, key);
   }
   
@@ -86,12 +86,12 @@ define(function (require, exports, module) {
     }];
     var _id = id + 'inactive.' + i;
 
-    CommandManager.register('Inactive Pane Tab ' + i, _id, cb(i - 1, false));
+    CommandManager.register('Inactive Pane Tab ' + i, _id, cb(i === 0 ? 9 : i - 1, false));
     KeyBindingManager.addBinding(_id, key);
   }
   
   function bind() {
-    for(var i = 1; i <= 9; ++i) {
+    for(var i = 0; i <= 9; ++i) {
       bindActivePane(i);
       bindInactivePane(i);
     }
