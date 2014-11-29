@@ -79,9 +79,9 @@ define(function (require, exports, module) {
   
   function bindInactivePane(i) {
     var key = [{
-      key: 'Alt-Ctrl-' + i
+      key: 'Alt-' + i
     }, {
-      key: 'Opt-Cmd-' + i,
+      key: 'Opt-' + i,
       platform: 'mac'
     }];
     var _id = id + 'inactive.' + i;
