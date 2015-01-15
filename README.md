@@ -7,7 +7,7 @@ Toggle between documents using:
 * Inactive Pane: Opt/Alt + #(1-9)
 
 ####Key Bindings####
-This may be helpful for international (i.e. non-English) keyboards.
+This may be helpful for international (i.e. non-English) keyboards.  
 You can override the keybinding in your keymap.json file (Debug -> Open User Key Map).
 
 The keys follow this pattern:
