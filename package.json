@@ -2,7 +2,7 @@
   "name": "ohnnyj.numbertabs",
   "title": "Number Tabs",
   "description": "Allows toggling between tabs / documents using [Opt/Alt] (Inactive Pane) | [Cmd/Ctrl] (Active Pane) + #.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "John Smith <ohnnyj@gmail.com>",
   "license": "MIT",
   "engines": {
