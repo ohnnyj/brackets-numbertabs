@@ -24,6 +24,10 @@ So, if you wanted to override the behaviour for the first tab of the active pane
 
 ####Release Notes:
 
+**0.0.6**
+
+* Moves file dirty status and file close indicators away from numbers.
+
 **0.0.5**
 
 * Change from Opt/Alt + Cmd/Ctrl to just Opt/Alt for switching from active to inactive pane.
